@@ -79,16 +79,7 @@ XYZ-{DEVICE_SERIAL_NUMBER}
 
 ## install-vmware.sh
 
-This script is intended for **end-user execution** and should be hosted on an accessible web server. Users can fetch and run it with `curl`. Make sure on the server hosting the script you run the command:
-```
-sudo perl -pi -e 's/\r$//' /PATH/TO/BUNDLE_FILE.bundle
-```
-Also note to make sure you set the following parameters
-```
-FIXED_MOK_PASSWORD="PLAIN-TEXT-PASSWORD"
-
-BUNDLE_URL="URL-Where-VMWARE.bundle File Resides"
-```
+This script is intended for **end-user execution** and should be hosted on an accessible web server. Users can fetch and run it with `curl`. 
 
 ### Purpose
 The script installs **VMware Workstation 17** on Ubuntu. During manual installations, I encountered issues with missing modules due to **Secure Boot** restrictions (unsigned kernel modules).  
@@ -98,11 +89,21 @@ This script automates the process by:
 2. Ensuring VMware modules load properly under Secure Boot  
 
 ### Usage
-- Set the variable:
+
+Make sure on the server hosting the script you run the command:
+```
+sudo perl -pi -e 's/\r$//' /PATH/TO/BUNDLE_FILE.bundle
+```
+- Set the variables:
   ```bash
   FIXED_MOK_PASSWORD="your-password-here"
+  BUNDLE_URL="URL-Where-VMWARE.bundle File Resides"
   ```
   > **Note:** While the password could be randomized during execution, for my use case I use a static password to prevent user error.
+- Have the end user run the script with the command:
+  ```
+  curl -fsSL http://{SERVER_IP}/directory/install-vmware.sh | sudo -E bash
+  ```
 - After the script completes, make sure to pay attention to the password the script will echo to the end user. This will be needed to enroll the MOK certificates
 - Reboot the Machine
 - In the MOK Manager, enroll the certificates using the password from ealier.
@@ -121,9 +122,6 @@ The Script is designed to give the End User clear instructions. That can be seen
     echo "    (Manual helper: /usr/local/sbin/vmware-finalize.sh)"
     echo "===================================================================="
 ```
-
-> **Note:** The use of these scripts are done at your own risk. I do not make any gurantees or accept responsibility for use of the contents of this repo. I urge everyone to do their own research and make sure you tailor anything here for your specific use case.
-
 
 # 📜 License & Disclaimer
 
