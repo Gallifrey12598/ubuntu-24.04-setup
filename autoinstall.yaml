@@ -40,6 +40,7 @@ autoinstall:
     runcmd:
       - chage -d "$(date +%Y-%m-%d)" {USERNAME}
       - chage -M 0 {USERNAME}
+      - echo "Password policy set for {USERNAME}" >> /var/log/firstboot.log
 
   late-commands:
     - curtin in-target -- bash -c "SERIAL=\$(dmidecode -s system-serial-number | tr -d '[:space:]'); hostnamectl set-hostname XYZ-\$SERIAL; echo XYZ-\$SERIAL > /etc/hostname; sed -i 's/127.0.1.1.*/127.0.1.1 XYZ-\$SERIAL/' /etc/hosts"
