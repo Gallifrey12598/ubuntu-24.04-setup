@@ -1,0 +1,45 @@
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: us
+    variant: ''
+  timezone: America/Chicago
+  identity:
+    hostname: ubuntu-machine
+    username: {ADMIN-USER}
+    password: "{HASHED PASSWORD}"
+  ssh:
+    install-server: true
+  storage:
+    layout:
+      name: lvm
+  packages:
+    - curl
+    - gnupg
+    - lsb-release
+    - python3-pip
+    - tailscale
+    - git
+    - vim
+    - libreoffice
+    - chromium-browser
+    - wireshark
+    - screen
+    - okular
+    - dmidecode
+  user-data:
+    users:
+      - name: {USERNAME}
+        gecos: {DISPLAYNAME}
+        shell: /bin/bash
+        primary_group: standarduser
+        groups: sudo
+        lock_passwd: false
+        passwd: "{HASHEDPASSWORD}"
+    runcmd:
+      - chage -d "$(date +%Y-%m-%d)" {USERNAME}
+      - chage -M 0 {USERNAME}
+
+  late-commands:
+    - curtin in-target -- bash -c "SERIAL=\$(dmidecode -s system-serial-number | tr -d '[:space:]'); hostnamectl set-hostname XYZ-\$SERIAL; echo XYZ-\$SERIAL > /etc/hostname; sed -i 's/127.0.1.1.*/127.0.1.1 XYZ-\$SERIAL/' /etc/hosts"
