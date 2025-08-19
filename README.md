@@ -85,6 +85,27 @@ The Script is designed to give the End User clear instructions. That can be seen
     echo "    (Manual helper: /usr/local/sbin/vmware-finalize.sh)"
     echo "===================================================================="
 ```
+# Install Tailescale and Pre-auth to self hosted Headscale
+This script will automate the process of installing tailscale on and Ubuntu device and connect to your self hosted headscale server. This is meant to be ran by the End user using the curl command.
+
+**Example:**
+```
+curl http://{SERVER_IP/directory/tailscale-install.sh}
+```
+The script is meant to be paired with the .evn file where your Enviroment Variables need to be set. The required parameters are:
+- HEADSCALE_URL=""
+- AUTH_KEY=""
+- USE_EXIT_NODE="false"
+- SHIELDS_UP="false"
+- ACCEPT_ROUTES="false"
+
+This script also assumes you have the .env hosted at *http://{SERVER_IP}/directory/.env*
+These can be updated based on your needs.
+
+
+---
+
+
 
 # 📜 License & Disclaimer
 
