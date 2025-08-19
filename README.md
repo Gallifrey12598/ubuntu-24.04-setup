@@ -114,3 +114,25 @@ The Script is designed to give the End User clear instructions. That can be seen
 ```
 
 > **Note:** The use of these scripts are done at your own risk. I do not make any gurantees or accept responsibility for use of the contents of this repo. I urge everyone to do their own research and make sure you tailor anything here for your specific use case.
+
+
+# 📜 License & Disclaimer
+
+This repository is licensed under the terms of the **GNU General Public License v3.0 (GPLv3)**.  
+You are free to use, modify, and distribute this code, provided that any derivative works are also licensed under the GPLv3.  
+
+See the [LICENSE](LICENSE) file for the complete license text.
+
+---
+
+> ⚠️ **Disclaimer**  
+> The scripts and configurations provided in this repository are offered **as-is** with no guarantees or warranties, express or implied. Use of these materials is entirely at your own risk.  
+>   
+> The author assumes no responsibility or liability for any issues, damages, or unintended consequences that may arise from using the contents of this repository.  
+>   
+> Before implementing anything here, you should:  
+> - Review and understand the code thoroughly.  
+> - Test in a **non-production** environment.  
+> - Tailor all configurations and scripts to your **specific environment, security requirements, and use cases**.  
+>   
+> By using these materials, you acknowledge that you are solely responsible for any outcomes, including system changes, data loss, or security implications.
