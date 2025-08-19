@@ -5,43 +5,6 @@ This repository contains tools, scripts, and configuration files I’ve develope
 Through discussions with staff, I identified required software and workflows, and created resources to make the migration as seamless as possible.
 
 ---
-
-## 🚀 Quick Start
-
-### 1. Automated Installation with `autoinstall.yaml`
-Use this configuration to preload accounts, install required software, and enforce password resets on first login.
-
-```bash
-# During ISO customization, place autoinstall.yaml under:
-# /cdrom/autoinstall/autoinstall.yaml
-```
-
-For password hashes, generate one with:
-
-```bash
-mkpasswd --method=SHA-512 --rounds=4096 'YourPassword'
-```
-
-Replace the placeholder in `autoinstall.yaml` with your hash.
-
----
-
-### 2. Install VMware Workstation
-Fetch and run the installation script:
-
-```bash
-curl -fsSL http://your-server/ubuntu/install-vmware.sh | sudo -E bash
-```
-
-- Make sure to set the password inside the script:
-  ```bash
-  FIXED_MOK_PASSWORD="your-password-here"
-  ```
-- After installation, **reboot** the system.
-- On reboot, follow the prompts to enroll the **MOK certificate** using the password provided.
-
----
-
 ## autoinstall.yaml
 
 To simplify deployments, I leverage Ubuntu’s **autoinstall** functionality with a customized `autoinstall.yaml` file. This file I have hosted on a web page. During ubuntu's installation you can specify where the autoinstall.yaml file is in advanced setup. For my use case it was something like:
