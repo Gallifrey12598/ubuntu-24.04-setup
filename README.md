@@ -30,7 +30,7 @@ Replace the placeholder in `autoinstall.yaml` with your hash.
 Fetch and run the installation script:
 
 ```bash
-curl -fsSL http://your-server/ubuntu/install-vmware.sh | sudo bash
+curl -fsSL http://your-server/ubuntu/install-vmware.sh | sudo -E bash
 ```
 
 - Make sure to set the password inside the script:
@@ -79,7 +79,16 @@ XYZ-{DEVICE_SERIAL_NUMBER}
 
 ## install-vmware.sh
 
-This script is intended for **end-user execution** and should be hosted on an accessible web server. Users can fetch and run it with `curl`.  
+This script is intended for **end-user execution** and should be hosted on an accessible web server. Users can fetch and run it with `curl`. Make sure on the server hosting the script you run the command:
+```
+sudo perl -pi -e 's/\r$//' /PATH/TO/BUNDLE_FILE.bundle
+```
+Also note to make sure you set the following parameters
+```
+FIXED_MOK_PASSWORD="PLAIN-TEXT-PASSWORD"
+
+BUNDLE_URL="URL-Where-VMWARE.bundle File Resides"
+```
 
 ### Purpose
 The script installs **VMware Workstation 17** on Ubuntu. During manual installations, I encountered issues with missing modules due to **Secure Boot** restrictions (unsigned kernel modules).  
