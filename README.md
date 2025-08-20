@@ -1,9 +1,38 @@
-# ubuntu-24.04-setup
+# Ubuntu 24.04 Baseline
 
 This repository contains tools, scripts, and configuration files I’ve developed while transitioning a workforce to **Ubuntu Desktop 24.04** in my role as a Sr. Systems Engineer.  
 
 Through discussions with staff, I identified required software and workflows, and created resources to make the migration as seamless as possible.
 
+---
+# Prerequisites
+This  repo and its files assumes you are running a webserver to host these files. As configured they do assume the following structure.
+```
+http://{SERVER_IP}/ubuntu
+-> baseline.sh
+-> autoinstall.yaml
+-> headscale
+  --> install-tailscale.sh
+  --> .env
+-> sshkey
+  --> install-sshkey.sh
+  --> .env
+-> vmware
+  --> install-vmware.sh
+  --> VMware-Workstation17-install.bundle
+
+```
+Although these scripts are configured in a way to make sure your repos are updated, it is good practice to run
+```
+$sudo apt-get update
+$sudo apt-get upgrade
+```
+---
+# Running the Baseline
+As stated before, this script is meant to be run on the host machine to *baseline* the machine. On the end user device simply invoke the script by running:
+```
+$curl http://{SERVER_IP}/ubuntu/baseline.sh
+```
 ---
 ## autoinstall.yaml
 
