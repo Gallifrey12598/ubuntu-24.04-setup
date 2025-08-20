@@ -104,7 +104,32 @@ These can be updated based on your needs.
 
 
 ---
+# Installation of SSH key(s)
+Since our deployment relies heavily on Ansible for Linux administration, it is essential that the Ansible server’s public SSH key be imported into client devices. This ensures that Ansible can connect to those devices for management without requiring manual intervention.
 
+Under normal circumstances, initiating an SSH session requires entering the password of the remote account. However, Ansible does not store these credentials. To enable passwordless authentication, we configure each client machine by placing the Ansible server’s public SSH key into the target user’s ~/.ssh/authorized_keys file. This allows Ansible to authenticate seamlessly without prompting for a password.
+
+This process is straightforward if you have direct access to the Ansible server. However, our end users do not. Instead, we use Tailscale/Headscale to provide a secure overlay network for administration. While Ansible can reach devices across this network, end users cannot directly interact with Ansible itself.
+
+On the Ansible server, the following command could be used:
+```
+sudo ssh-copy-id user@ip
+```
+This copies the Ansible server’s public key (id_rsa.pub) into the specified user’s authorized_keys file on the remote system. However, this approach requires the operator to know each client’s IP address and to repeat the process manually for every machine. To streamline deployment, we decided to handle this step during initial machine configuration.
+
+For this purpose, we created the install-sshkey.sh script, designed to run locally on client machines. The script checks the ~/.ssh/authorized_keys file for the presence of the key defined in the .env variable SSH_KEY. If the key is not already present, it appends the key to the file, ensuring Ansible has the necessary access.
+
+***IMPORTANT***: Make sure the following variables are set based upon your specifications
+
+*Script*
+```
+ENV_URL=
+USER_NAME=
+```
+*.env*
+```
+SSH_KEY=
+```
 
 
 # 📜 License & Disclaimer
