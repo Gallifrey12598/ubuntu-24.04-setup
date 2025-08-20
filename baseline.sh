@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # baseline.sh — Bootstrap baseline on Ubuntu
-# Usage: curl -fsSL http://10.0.0.6/ubuntu/baseline.sh | sudo bash
+# Usage: curl -fsSL http://{SERVER_IP}/ubuntu/baseline.sh | sudo bash
 
 set -Eeuo pipefail
 
-### --- Config (edit if your host/paths change) ---
+### --- Config (This is where you will input your specified parameters) ---
 BASE_URL="http://{SERVER_IP}/ubuntu"
 
 # Remote script URLs
