@@ -127,7 +127,7 @@ systemctl enable --now tailscaled
 sleep 1
 
 # --- Build tailscale up args ---
-UP_FLAGS=(--login-server="${HEADSCALE_URL}" --hostname="${DEVICE_NAME}")
+UP_FLAGS=(--login-server="${HEADSCALE_URL}" --hostname="${DEVICE_NAME}" --authkey="${AUTH_KEY}")
 
 if [ -n "${ADVERTISE_ROUTES:-}" ]; then
   UP_FLAGS+=(--advertise-routes="${ADVERTISE_ROUTES}")
