@@ -159,7 +159,21 @@ USER_NAME=
 ```
 SSH_KEY=
 ```
+# Common Access Card Setup
+After the initial deployment, one common issue our end users encountered was using their CAC with Ubuntu. By default, Ubuntu does not natively support DoD authentication through a CAC, so we had to implement a solution that included installing the required drivers and importing the DoD Root CA certificates.
 
+A very helpful resource in our efforts was the information available at:
+'''
+https://militarycac.com/linux.htm
+'''
+While the website’s design might look dated, it remains a highly valuable source of information for resolving CAC-related issues when working with DoD sites.
+
+One of the most important resources linked on that site is a script written by Jeremy Jackson, which automates much of the work involved in importing DoD Root Certificates and enabling CAC support on Ubuntu. We implemented this script in our environment, and it can be found here:
+'''
+https://github.com/jdjaxon/linux_cac
+'''
+
+This script performs several tasks to streamline CAC setup. One key feature, especially for Firefox users, is that it automatically removes the unsupported SNAP version of Firefox and installs the ESR version instead. It also imports the required certificates directly into Firefox, since Firefox does not use the system’s local certificate store.
 
 # 📜 License & Disclaimer
 
