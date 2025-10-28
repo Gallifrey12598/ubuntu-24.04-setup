@@ -8,7 +8,7 @@ In this example, we’ll use the user’s **Documents** folder:
 
 ```bash
 cd /home/instructor/Documents
-curl http://{SERVER-IP}/windows/windows11.iso -o windows11.iso
+curl http://192.168.99.21/windows/windows11.iso -o windows11.iso
 ```
 
 > **Note:** Keep track of the location where you saved the ISO — you’ll need it later.
@@ -35,12 +35,15 @@ curl http://{SERVER-IP}/windows/windows11.iso -o windows11.iso
 ---
 
 ## 4. Adjust Hardware Settings
-Before finishing, you can customize the hardware:
+Before finishing, customize the hardware as follows:
 
 ```
 Memory: 8192 MB (8 GB)
 Processors: 1 processor, 4 cores
+Network Adapter: Ensure this option is NOT set to "Connect at power on" or "Connected"
 ```
+
+> The VM should not have access to the internet until after the initial setup has been completed.
 
 Click **Finish** to create the virtual machine.
 
@@ -58,3 +61,39 @@ Click **Finish** to create the virtual machine.
 ---
 
 The installation process will begin. This may take some time, and the virtual machine will reboot automatically several times during setup.
+
+---
+
+## 6. Post-Installation Instructions
+Once the installation is complete, you’ll be prompted with the Windows initial setup. While mostly self-explanatory, follow the additional steps below for local account setup.
+
+1. On **“Is this the right country or region?”**, select **United States** and click **Yes**.  
+2. For your keyboard layout, select your preferred layout and click **Yes**.  
+3. Click **Skip** on **“Want to add a second keyboard layout?”**  
+4. When prompted with **“Let’s connect you to a network”**, perform the following:
+
+```
+Hold down Shift + F10 (use the fn key if necessary)
+Type: start ms-cxh:localonly
+Press Enter
+This will open the Local Account Setup dialog.
+Set a username and password.
+Choose and answer your security questions.
+Click Next.
+Windows 11 setup will continue.
+```
+
+5. Under **“Choose privacy settings for your device”**, set all options to **No** and click **Accept**.  
+6. You should now arrive at the Windows desktop as your new local user. You can now safely connect the device to the internet.
+
+---
+
+## 7. Connect the Network Adapter
+1. In VMware Workstation, right-click your virtual machine and select **Settings**.  
+2. In the pop-up window, click **Network Adapter**.  
+3. Under **Device Status**, check both **Connected** and **Connect at power on**.  
+4. Click **Save**.
+
+---
+
+Your Windows 11 virtual machine setup is now complete and ready for use.
