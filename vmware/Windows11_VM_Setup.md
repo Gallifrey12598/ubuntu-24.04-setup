@@ -8,7 +8,7 @@ In this example, we’ll use the user’s **Documents** folder:
 
 ```bash
 cd /home/instructor/Documents
-curl http://192.168.99.21/windows/windows11.iso -o windows11.iso
+curl http://{SERVER-IP}/windows/windows11.iso -o windows11.iso
 ```
 
 > **Note:** Keep track of the location where you saved the ISO — you’ll need it later.
