@@ -16,20 +16,46 @@ curl http://{SERVER-IP}/windows/windows11.iso -o windows11.iso
 ---
 
 ## 2. Create a New Virtual Machine
-1. Open **VMware Workstation**.  
+1. Open **VMware Workstation**. 
+<p align="center">
+  <img src="/vmware/images/1.png" width="600">
+</p>
 2. Go to **File > New Virtual Machine**.  
-3. Select **Typical (recommended)** and click **Next**.  
+<p align="center">
+  <img src="/vmware/images/2.png" width="600">
+</p>
+3. Select **Typical (recommended)** and click **Next**. 
+<p align="center">
+  <img src="/vmware/images/3.png" width="600">
+</p>
 4. Choose **Use ISO image file**.  
-5. Click **Browse**, navigate to where you saved the `windows11.iso`, select it, and click **Open**.  
+<p align="center">
+  <img src="/vmware/images/4.png" width="600">
+</p>
+5. Click **Browse**, navigate to where you saved the `windows11.iso`, select it, and click **Open**. 
+<p align="center">
+  <img src="/vmware/images/5.png" width="600">
+</p>
 6. Click **Next**.
+
+
 
 ---
 
 ## 3. Configure the Virtual Machine
 1. Enter a name for your virtual machine.  
-2. Keep the default location and click **Next**.  
-3. When prompted for TPM (Trusted Platform Module), set a **password**, confirm it, and click **Next**.  
-4. Set the **disk size** to **64 GB**, and ensure **Split virtual disk into multiple files** is checked.  
+2. Keep the default location and click **Next**.
+<p align="center">
+  <img src="/vmware/images/6.png" width="600">
+</p>
+3. When prompted for TPM (Trusted Platform Module), set a **password**, confirm it, and click **Next**. 
+<p align="center">
+  <img src="/vmware/images/7.png" width="600">
+</p>
+4. Set the **disk size** to **64 GB**, and ensure **Split virtual disk into multiple files** is checked.
+<p align="center">
+  <img src="/vmware/images/8.png" width="600">
+</p>
 5. Click **Next**.
 
 ---
@@ -42,8 +68,15 @@ Memory: 8192 MB (8 GB)
 Processors: 1 processor, 4 cores
 Network Adapter: Ensure this option is NOT set to "Connect at power on" or "Connected"
 ```
+<p align="center">
+  <img src="/vmware/images/9.png" width="600">
+</p>
 
 > The VM should not have access to the internet until after the initial setup has been completed.
+
+<p align="center">
+  <img src="/vmware/images/Final.png" width="600">
+</p>
 
 Click **Finish** to create the virtual machine.
 
