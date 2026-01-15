@@ -1,11 +1,23 @@
 #!/usr/bin/env bash
 # baseline.sh — Bootstrap baseline on Ubuntu
-# Usage: curl -fsSL http://{SERVER_IP}/ubuntu/baseline.sh | sudo bash
+# Usage: curl -fsSL http://{SERVER_IP}/ubuntu/baseline.sh | sudo BASELINE_URL="http://{SERVER_IP}/ubuntu/baseline.sh" bash
+#    or: curl -fsSL http://{SERVER_IP}/ubuntu/baseline.sh | sudo BASE_URL="http://{SERVER_IP}/ubuntu" bash
+#    or: curl -fsSL http://{SERVER_IP}/ubuntu/baseline.sh | sudo bash -s -- http://{SERVER_IP}/ubuntu/baseline.sh
 
 set -Eeuo pipefail
 
 ### --- Config (This is where you will input your specified parameters) ---
-BASE_URL="http://{SERVER_IP}/ubuntu"
+BASELINE_URL="${BASELINE_URL:-${1:-}}"
+BASE_URL="${BASE_URL:-}"
+
+if [[ -z "$BASE_URL" && -n "$BASELINE_URL" ]]; then
+  BASE_URL="${BASELINE_URL%/baseline.sh}"
+fi
+
+if [[ -z "$BASE_URL" ]]; then
+  echo "[-] BASE_URL is required. Set BASE_URL or BASELINE_URL." >&2
+  exit 1
+fi
 
 # Remote script URLs
 URL_TAILSCALE="${BASE_URL}/headscale/install-tailscale.sh"
